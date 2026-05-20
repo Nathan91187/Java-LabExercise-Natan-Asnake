@@ -43,13 +43,11 @@ public class Server{
     }
     public static void oneVoneImage(String sender, String receiver, byte[] data) throws IOException {
         if (clients.containsKey(receiver)) {
-
             clients.get(receiver).out.writeUTF("Image");
             clients.get(receiver).out.writeUTF(sender);
             clients.get(receiver).out.writeInt(data.length);
             clients.get(receiver).out.write(data);
             clients.get(receiver).out.flush();
-
         } else {
             clients.get(sender).out.writeUTF("User " + receiver + " Not Online!");
             clients.get(sender).out.flush();
